@@ -24,18 +24,12 @@
  * <http://www.gnu.org/licenses/> for the GNU General Public License and
  * the GNU Lesser Public License.
  */
-package com.almuramc.playerplus;
+package com.almuramc.recipemanager;
 
 import org.getspout.spoutapi.event.input.KeyBindingEvent;
 import org.getspout.spoutapi.gui.ScreenType;
 import org.getspout.spoutapi.keyboard.BindingExecutionDelegate;
 import org.getspout.spoutapi.player.SpoutPlayer;
-
-import org.bukkit.Bukkit;
-import org.bukkit.World;
-import org.bukkit.entity.Player;
-import org.bukkit.event.inventory.InventoryCloseEvent;
-import org.bukkit.inventory.Inventory;
 
 public class InputHandler implements BindingExecutionDelegate {
 	public void keyPressed(KeyBindingEvent keyBindingEvent) {
@@ -47,7 +41,7 @@ public class InputHandler implements BindingExecutionDelegate {
 		
 		SpoutPlayer sPlayer = keyBindingEvent.getPlayer();		
 		if(sPlayer.hasPermission("playerplus.use")) {
-			new TextureChooser(PlayerPlus.getInstance(), keyBindingEvent.getPlayer());
+			new RecipeGUI(RecipeManager.getInstance(), keyBindingEvent.getPlayer());
 		}
 
 	}

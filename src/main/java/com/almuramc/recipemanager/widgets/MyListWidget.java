@@ -2,20 +2,20 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.almuramc.playerplus.widgets;
+package com.almuramc.recipemanager.widgets;
 
 import org.getspout.spoutapi.gui.GenericListWidget;
 
-import com.almuramc.playerplus.TextureChooser;
+import com.almuramc.recipemanager.RecipeGUI;
 
 /**
  *
  * @author ZNickq
  */
 public class MyListWidget extends GenericListWidget{
-	TextureChooser base;
+	RecipeGUI base;
 	
-	public MyListWidget(TextureChooser base) {
+	public MyListWidget(RecipeGUI base) {
 		this.base = base;
 	}
 

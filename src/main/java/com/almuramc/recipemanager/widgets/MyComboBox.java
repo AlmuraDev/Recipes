@@ -2,21 +2,21 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.almuramc.playerplus.widgets;
+package com.almuramc.recipemanager.widgets;
 
 import org.getspout.spoutapi.gui.GenericListWidget;
 import org.getspout.spoutapi.gui.GenericComboBox;
 
-import com.almuramc.playerplus.TextureChooser;
+import com.almuramc.recipemanager.RecipeGUI;
 
 /**
  *
  * @author ZNickq
  */
 public class MyComboBox extends GenericComboBox{
-	private TextureChooser base;
+	private RecipeGUI base;
 	
-	public MyComboBox(TextureChooser base) {
+	public MyComboBox(RecipeGUI base) {
 		this.base = base;
 	}
 

@@ -2,12 +2,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.almuramc.playerplus.widgets;
+package com.almuramc.recipemanager.widgets;
 
 import org.getspout.spoutapi.event.screen.ButtonClickEvent;
 import org.getspout.spoutapi.gui.GenericButton;
 
-import com.almuramc.playerplus.TextureChooser;
+import com.almuramc.recipemanager.RecipeGUI;
 
 /**
  *
@@ -16,9 +16,9 @@ import com.almuramc.playerplus.TextureChooser;
 public class ActionButton extends GenericButton {
 
 	private int id;
-	private TextureChooser base;
+	private RecipeGUI base;
 
-	public ActionButton(String name, TextureChooser tx, int id) {
+	public ActionButton(String name, RecipeGUI tx, int id) {
 		super(name);
 		this.base = tx;
 		this.id = id;
