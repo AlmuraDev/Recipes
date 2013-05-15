@@ -30,9 +30,9 @@ public class RecipeGUI extends GenericPopup {
 	private SpoutPlayer player;
 	private ListWidget lw;
 	private GenericButton select;
+	private List<RecipeList> list;
 	private MyComboBox cb;
-	private GenericTexture gt;	
-	private int addonType = 1;
+	private GenericTexture craftTexture, resultTexture;
 
 	public RecipeGUI(RecipeManager instance, SpoutPlayer player) {
 		this.instance = instance;
@@ -70,33 +70,22 @@ public class RecipeGUI extends GenericPopup {
 		lw.setHeight(150).setWidth(150);		
 		lw.shiftXPos(-195).shiftYPos(-60);		
 
-		gt = new GenericTexture();
-		gt.setAnchor(WidgetAnchor.CENTER_CENTER);
-		gt.setHeight(150).setWidth(150);
-		gt.shiftXPos(5).shiftYPos(-90);		
+		craftTexture = new GenericTexture();
+		craftTexture.setAnchor(WidgetAnchor.CENTER_CENTER);
+		craftTexture.setHeight(110).setWidth(190);
+		craftTexture.shiftXPos(5).shiftYPos(-100);		
 
-		GenericButton pre = new ActionButton("<", this, -1);
-		pre.setAnchor(WidgetAnchor.CENTER_CENTER);
-		pre.setHeight(20).setWidth(20);
-		pre.shiftXPos(5).shiftYPos(65);
+		resultTexture = new GenericTexture();
+		resultTexture.setAnchor(WidgetAnchor.CENTER_CENTER);
+		resultTexture.setHeight(100).setWidth(100);
+		resultTexture.shiftXPos(50).shiftYPos(20);		
 
-		select = new ActionButton("Select", this, 0);
-		select.setAnchor(WidgetAnchor.CENTER_CENTER);
-		select.setHeight(20).setWidth(50);
-		select.shiftXPos(50).shiftYPos(65);
-		select.setEnabled(false);
-
-		GenericButton next = new ActionButton(">", this, 1);
-		next.setAnchor(WidgetAnchor.CENTER_CENTER);
-		next.setHeight(20).setWidth(20);
-		next.shiftXPos(133).shiftYPos(65);
-
-		CloseButton close = new CloseButton(instance);
+			CloseButton close = new CloseButton(instance);
 		close.setAnchor(WidgetAnchor.CENTER_CENTER);
 		close.setHeight(20).setWidth(50);
 		close.shiftXPos(145).shiftYPos(95);
 	
-		attachWidgets(instance, border, label, label1, lw, cb, gt, pre, select, next, close);
+		attachWidgets(instance, border, label, label1, lw, cb, select, craftTexture, resultTexture, close);
 		player.getMainScreen().attachPopupScreen(this);
 		updateTexture();
 	}
@@ -104,22 +93,24 @@ public class RecipeGUI extends GenericPopup {
 	public void updateTexture() {
 		int sel = lw.getSelectedRow();
 		if (sel < 1) {
-			gt.setUrl("");
+			craftTexture.setUrl("");
+			resultTexture.setUrl("");
 		} else {
-			gt.setUrl(list.get(sel - 1).getUrl());
+			craftTexture.setUrl(list.get(sel - 1).getUrl());
+			resultTexture.setUrl(list.get(sel - 1).getUrl());
 		}		
-		gt.setDirty(true);
+		craftTexture.setDirty(true);
+		resultTexture.setDirty(true);
 	}
 
 	public void updateList() {
-		lw.clear();
-				
+		lw.clear();				
 		lw.setDirty(true);
 	}
 		
 	private void updateDropdown() {
 		List<String> available = new ArrayList<String>();		
-		available.add(StringUtils.capitalize(type.name().toLowerCase()));				
+		//available.add(StringUtils.capitalize(type.name().toLowerCase()));				
 		Collections.sort(available, String.CASE_INSENSITIVE_ORDER);
 		cb.setItems(available);
 		cb.setDirty(true);
@@ -127,5 +118,15 @@ public class RecipeGUI extends GenericPopup {
 
 	public void onListSelected(int item) {
 		updateTexture();
+	}
+
+	public void onSelected(String text) {
+		// ToDo:
+		
+	}
+
+	public void onActionClick(int id) {
+		// ToDo:
+		
 	}
 }

@@ -1,0 +1,5 @@
+Asphalt:
+    Recipe:
+        location: images/asphaltrecipe.png
+    Result:
+        location: images/asphaltblock.png

@@ -9,10 +9,6 @@ import org.getspout.spoutapi.gui.GenericButton;
 
 import com.almuramc.recipemanager.RecipeGUI;
 
-/**
- *
- * @author ZNickq
- */
 public class ActionButton extends GenericButton {
 
 	private int id;
