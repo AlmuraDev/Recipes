@@ -65,8 +65,8 @@ public class RecipesPlugin extends JavaPlugin {
 		//Precache files
 		for (Map.Entry<String, List<RecipeInfo>> entry : REGISTRY.getAll().entrySet()) {
 			for (RecipeInfo info : entry.getValue()) {
-				SpoutManager.getFileManager().addToPreLoginCache(this, new File(getDataFolder() + File.separator + "images", info.getInputImageLocation()));
-				SpoutManager.getFileManager().addToPreLoginCache(this, new File(getDataFolder() + File.separator + "images", info.getOutputImageLocation()));
+				SpoutManager.getFileManager().addToPreLoginCache(this, new File(getDataFolder().getPath() + File.separator + "images", info.getInputImageLocation()));
+				SpoutManager.getFileManager().addToPreLoginCache(this, new File(getDataFolder().getPath() + File.separator + "images", info.getOutputImageLocation()));
 			}
 		}
 	}
