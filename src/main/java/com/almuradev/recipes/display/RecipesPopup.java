@@ -123,6 +123,9 @@ public class RecipesPopup extends GenericPopup {
 
 	//ComboBox
 	public void onSelectionChanged(int i, String text) {
+		if (listWidget == null) {
+			return;
+		}
 		listWidget.clear();
 		final List<RecipeInfo> infos = plugin.getBackend().get(text);
 		if (infos == null) {
