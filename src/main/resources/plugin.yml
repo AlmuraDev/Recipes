@@ -7,3 +7,16 @@ website: ${project.organization.url}
 main: ${mainClass}
 depend: [Spout]
 load: POSTWORLD
+
+permissions:
+    recipes.*:
+        description: Gives access to all recipes abilities
+        children:
+            reserve.admin: true
+            reserve.view: true
+    recipes.admin:
+        description:
+        default: op
+    recipes.view:
+        description:
+        default: op
