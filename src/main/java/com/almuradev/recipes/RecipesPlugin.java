@@ -19,7 +19,11 @@
  */
 package com.almuradev.recipes;
 
+import java.util.List;
+import java.util.Map;
+
 import com.almuradev.recipes.delegate.InputHandler;
+import com.almuradev.recipes.info.RecipeInfo;
 import com.almuradev.recipes.io.Loader;
 import com.almuradev.recipes.io.RecipesRegistry;
 
@@ -39,9 +43,11 @@ public class RecipesPlugin extends JavaPlugin {
 
 	@Override
 	public void onEnable() {
+		//Setup loader
 		loader = new Loader(this);
 		loader.onEnable();
 		loader.load();
+		//Setup config
 		FileConfiguration config = this.getConfig();
 		config.addDefault("PromptTitle", "Recipe Browser");
 		config.addDefault("TitleX", 190);
@@ -49,7 +55,15 @@ public class RecipesPlugin extends JavaPlugin {
 		config.addDefault("GUITexture", "http://www.pixentral.com/pics/1duZT49LzMnodP53SIPGIqZ8xdKS.png");
 		config.options().copyDefaults(true);
 		saveConfig();
+		//Setup bindings
 		SpoutManager.getKeyBindingManager().registerBinding("Recipes", Keyboard.valueOf(getConfig().getString("Hot_Key", "Key_U")), "Opens Recipes Browser", new InputHandler(this), this);
+		//Precache files
+		for (Map.Entry<String, List<RecipeInfo>> entry : REGISTRY.getAll().entrySet()) {
+			for (RecipeInfo info : entry.getValue()) {
+				SpoutManager.getFileManager().addToPreLoginCache(this, info.getInputImageLocation());
+				SpoutManager.getFileManager().addToPreLoginCache(this, info.getOutputImageLocation());
+			}
+		}
 	}
 
 	public RecipesRegistry getBackend() {
