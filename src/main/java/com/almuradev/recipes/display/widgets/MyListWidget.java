@@ -14,6 +14,6 @@ public class MyListWidget extends GenericListWidget {
 	@Override
 	public void onSelected(int item, boolean doubleClick) {
 		super.onSelected(item, doubleClick);
-		base.onListSelected(item);
+		base.onListSelectionChanged(item, doubleClick);
 	}
 }

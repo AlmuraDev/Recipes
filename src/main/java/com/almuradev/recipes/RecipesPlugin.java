@@ -17,6 +17,7 @@ public class RecipesPlugin extends JavaPlugin {
 	public void onEnable() {
 		loader = new Loader(this);
 		loader.onEnable();
+		loader.load();
 	}
 
 	public RecipesRegistry getBackend() {

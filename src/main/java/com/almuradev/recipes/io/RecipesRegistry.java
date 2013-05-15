@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import com.almuradev.recipes.info.RecipeInfo;
 
@@ -45,6 +46,10 @@ public class RecipesRegistry {
 			throw new NullPointerException("Specified type is null!");
 		}
 		return TYPES_RECIPES.get(type);
+	}
+
+	public Set<String> getTypes() {
+		return TYPES_RECIPES.keySet();
 	}
 
 	public Map<String, List<RecipeInfo>> getAll() {

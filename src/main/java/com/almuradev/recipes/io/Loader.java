@@ -38,7 +38,7 @@ public class Loader {
 		}
 	}
 
-	protected void load() {
+	public void load() {
 		try {
 			Files.walkFileTree(dir.toPath(), new FileLoadingVisitor(plugin));
 		} catch (IOException ignore) {

@@ -14,6 +14,6 @@ public class MyComboBox extends GenericComboBox {
 	@Override
 	public void onSelectionChanged(int i, String text) {
 		super.onSelectionChanged(i, text);
-		form.onSelected(text);
+		form.onSelectionChanged(i, text);
 	}
 }
