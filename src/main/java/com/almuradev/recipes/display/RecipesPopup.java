@@ -112,7 +112,7 @@ public class RecipesPopup extends GenericPopup {
 	//ListWidget
 	public void onListSelectionChanged(int item, boolean doubleClick) {
 		final String selectedTypeName = comboBox.getSelectedItem();
-		final String selectedRecipeName = listWidget.getItem(item).getText();
+		final String selectedRecipeName = listWidget.getSelectedItem().getText();
 		final RecipeInfo info = plugin.getBackend().get(selectedTypeName, selectedRecipeName);
 		if (info == null) {
 			craftTexture.setUrl("");
@@ -139,6 +139,7 @@ public class RecipesPopup extends GenericPopup {
 		for (RecipeInfo info : plugin.getBackend().get(text)) {
 			listWidget.addItem(new ListWidgetItem(info.getIdentifer(), ""));
 		}
+		listWidget.setSelection(0);
 	}
 
 	private void populateComboBox() {

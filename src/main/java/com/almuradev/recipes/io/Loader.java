@@ -86,7 +86,7 @@ class FileLoadingVisitor extends SimpleFileVisitor<Path> {
 			plugin.getLogger().severe("Could not load: " + path.getFileName() + ". Skipping...");
 			return FileVisitResult.TERMINATE;
 		}
-		plugin.getBackend().put(path.getFileName().toString(), toInject);
+		plugin.getBackend().put(path.getFileName().toString().split(".yml")[0], toInject);
 		return FileVisitResult.TERMINATE;
 	}
 
