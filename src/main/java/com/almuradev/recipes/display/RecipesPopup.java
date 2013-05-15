@@ -139,7 +139,15 @@ public class RecipesPopup extends GenericPopup {
 		for (RecipeInfo info : plugin.getBackend().get(text)) {
 			listWidget.addItem(new ListWidgetItem(info.getIdentifer(), ""));
 		}
-		listWidget.setSelection(0);
+		if (listWidget.getItems().length > 0) {
+			final String selectedTypeName = comboBox.getSelectedItem();
+			final String selectedRecipeName = listWidget.getItem(0).getTitle();
+			final RecipeInfo info = plugin.getBackend().get(selectedTypeName, selectedRecipeName);
+			if (info != null) {
+				craftTexture.setUrl(new File(plugin.getDataFolder().getPath() + File.separator + "images", info.getInputImageLocation()).getPath());
+				resultTexture.setUrl(new File(plugin.getDataFolder().getPath() + File.separator + "images", info.getOutputImageLocation()).getPath());
+			}
+		}
 	}
 
 	private void populateComboBox() {
