@@ -19,6 +19,8 @@
  */
 package com.almuradev.recipes;
 
+import java.io.File;
+import java.net.MalformedURLException;
 import java.util.List;
 import java.util.Map;
 
@@ -64,8 +66,8 @@ public class RecipesPlugin extends JavaPlugin {
 		//Precache files
 		for (Map.Entry<String, List<RecipeInfo>> entry : REGISTRY.getAll().entrySet()) {
 			for (RecipeInfo info : entry.getValue()) {
-				SpoutManager.getFileManager().addToPreLoginCache(this, info.getInputImageLocation());
-				SpoutManager.getFileManager().addToPreLoginCache(this, info.getOutputImageLocation());
+				SpoutManager.getFileManager().addToPreLoginCache(this, new File(info.getInputImageLocation()));
+				SpoutManager.getFileManager().addToPreLoginCache(this, new File(info.getOutputImageLocation()));
 			}
 		}
 	}
