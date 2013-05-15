@@ -1,7 +1,7 @@
 package com.almuradev.recipes.delegate;
 
 import com.almuradev.recipes.RecipesPlugin;
-import com.almuradev.recipes.Util.RecipesPermissions;
+import com.almuradev.recipes.util.RecipesPermissions;
 import com.almuradev.recipes.display.RecipesPopup;
 
 import org.getspout.spoutapi.event.input.KeyBindingEvent;

@@ -1,4 +1,4 @@
-package com.almuradev.recipes.Util;
+package com.almuradev.recipes.util;
 
 public enum RecipesPermissions {
 	VIEW("recipes.view");
