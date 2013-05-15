@@ -44,7 +44,7 @@ public class RecipesPopup extends GenericPopup {
 	private RecipesPlugin plugin;
 	private SpoutPlayer player;
 	private ListWidget listWidget;
-	private GenericButton selectButton;
+	//private GenericButton selectButton; TODO
 	private MyComboBox comboBox;
 	private GenericTexture craftTexture, resultTexture;
 
@@ -98,7 +98,8 @@ public class RecipesPopup extends GenericPopup {
 		close.setHeight(20).setWidth(50);
 		close.shiftXPos(145).shiftYPos(95);
 
-		attachWidgets(plugin, border, label, label1, listWidget, comboBox, selectButton, craftTexture, resultTexture, close);
+
+		attachWidgets(plugin, border, label, label1, listWidget, comboBox, craftTexture, resultTexture, close);
 		player.getMainScreen().attachPopupScreen(this);
 		populateComboBox();
 	}
