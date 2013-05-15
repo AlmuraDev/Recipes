@@ -22,6 +22,7 @@ package com.almuradev.recipes;
 import com.almuradev.recipes.io.Loader;
 import com.almuradev.recipes.io.RecipesRegistry;
 
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class RecipesPlugin extends JavaPlugin {
@@ -37,6 +38,13 @@ public class RecipesPlugin extends JavaPlugin {
 		loader = new Loader(this);
 		loader.onEnable();
 		loader.load();
+		FileConfiguration config = this.getConfig();
+		config.addDefault("PromptTitle", "Recipe Browser");
+		config.addDefault("TitleX", 190);
+		config.addDefault("Hot_Key", "KEY_U");
+		config.addDefault("GUITexture", "http://www.pixentral.com/pics/1duZT49LzMnodP53SIPGIqZ8xdKS.png");
+		config.options().copyDefaults(true);
+		saveConfig();
 	}
 
 	public RecipesRegistry getBackend() {
