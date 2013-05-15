@@ -19,8 +19,12 @@
  */
 package com.almuradev.recipes;
 
+import com.almuradev.recipes.delegate.InputHandler;
 import com.almuradev.recipes.io.Loader;
 import com.almuradev.recipes.io.RecipesRegistry;
+
+import org.getspout.spoutapi.SpoutManager;
+import org.getspout.spoutapi.keyboard.Keyboard;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -45,6 +49,7 @@ public class RecipesPlugin extends JavaPlugin {
 		config.addDefault("GUITexture", "http://www.pixentral.com/pics/1duZT49LzMnodP53SIPGIqZ8xdKS.png");
 		config.options().copyDefaults(true);
 		saveConfig();
+		SpoutManager.getKeyBindingManager().registerBinding("Recipes", Keyboard.valueOf(getConfig().getString("Hot_Key", "Key_U")), "Opens Recipes Browser", new InputHandler(this), this);
 	}
 
 	public RecipesRegistry getBackend() {
