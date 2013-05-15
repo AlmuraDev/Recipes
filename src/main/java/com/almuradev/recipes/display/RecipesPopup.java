@@ -19,6 +19,7 @@
  */
 package com.almuradev.recipes.display;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -30,7 +31,6 @@ import com.almuradev.recipes.display.widgets.MyComboBox;
 import com.almuradev.recipes.display.widgets.MyListWidget;
 import com.almuradev.recipes.info.RecipeInfo;
 
-import org.getspout.spoutapi.gui.GenericButton;
 import org.getspout.spoutapi.gui.GenericLabel;
 import org.getspout.spoutapi.gui.GenericPopup;
 import org.getspout.spoutapi.gui.GenericTexture;
@@ -117,8 +117,8 @@ public class RecipesPopup extends GenericPopup {
 			craftTexture.setUrl("");
 			resultTexture.setUrl("");
 		} else {
-			craftTexture.setUrl(info.getInputImageLocation());
-			resultTexture.setUrl(info.getOutputImageLocation());
+			craftTexture.setUrl(new File(plugin.getDataFolder().getPath() + File.separator + "images", info.getInputImageLocation()).getPath());
+			resultTexture.setUrl(new File(plugin.getDataFolder().getPath() + File.separator + "images", info.getOutputImageLocation()).getPath());
 		}
 	}
 
