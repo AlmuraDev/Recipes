@@ -1,48 +1,9 @@
-name: PlayerPlus
-main: com.almuramc.playerplus.PlayerPlus
-version: 1.4
-authors: [AlmuraDev]
+name: ${project.name}
+version: ${project.version}
+description: ${project.description}
+author: ${project.organization.name}
+website: ${project.organization.url}
+
+main: ${mainClass}
 depend: [Spout]
-permissions:
-    playerplus.*:
-        description: Gives access to all playerplus abilities
-        children:
-            playerplus.use: true            
-            playerplus.use.bracelet: true
-            playerplus.use.ears: true
-            playerplus.use.sunglasses: true
-            playerplus.use.tail: true
-            playerplus.use.tophat: true
-            playerplus.use.notchhat: true
-            playerplus.use.wings: true            
-            playerplus.use.capes: true                   
-    playerplus.use:
-        description: Allows users to be use PlayerPlus Interface
-        default: op    
-    playerplus.use.bracelet:
-        description: Allow Bracelet
-        default: op
-    playerplus.use.ears:
-        description: Allow Earings
-        default: op
-    playerplus.use.sunglasses:
-        description: Allow Sunglasses
-        default: op
-    playerplus.use.tail:
-        description: Allow Tails
-        default: op
-    playerplus.use.tophat:
-        description: Allow Tophats
-        default: op
-    playerplus.use.notchhat:
-        description: Allow Notchhats
-        default: op        
-    playerplus.use.wings:
-        description: Allow Wings
-        default: op
-    playerplus.title:
-        description: Allow Titles
-        default: op
-    playerplus.use.capes:
-        description: Allow Capes
-        default: op    
+load: POSTWORLD

@@ -1,21 +1,16 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-package com.almuramc.recipemanager.widgets;
+package com.almuradev.recipes.display.widgets;
+
+import com.almuradev.recipes.RecipesPlugin;
 
 import org.getspout.spoutapi.event.screen.ButtonClickEvent;
 import org.getspout.spoutapi.gui.GenericButton;
 
-import com.almuramc.recipemanager.RecipeManager;
-
 public class CloseButton extends GenericButton {
+	private RecipesPlugin plugin;
 
-	private RecipeManager i;
-
-	public CloseButton(RecipeManager i) {
+	public CloseButton(RecipesPlugin plugin) {
 		super("Close");
-		this.i = i;
+		this.plugin = plugin;
 	}
 
 	public CloseButton(boolean openMain) {

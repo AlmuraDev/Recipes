@@ -4,17 +4,17 @@
 
 	<!-- Project information -->
 	<groupId>com.almuradev</groupId>
-	<artifactId>recipemanager</artifactId>
-	<version>0.1</version>
-	<name>RecipeManager</name>
+	<artifactId>recipes</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<name>Recipes</name>
 	<url>http://www.almuradev.com</url>
-	<description>The premiere Spoutcraft recipe manager.</description>
+	<description>The premier Spoutcraft recipe manager.</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<bukkitVersion>1.5.1-R0.3-SNAPSHOT</bukkitVersion>
 		<spoutVersion>1.5.1-R0.3-SNAPSHOT</spoutVersion>
-		<mainClass>com.almuradev.sprout.plugin.SproutPlugin</mainClass>
+		<mainClass>com.almuradev.recipes.RecipesPlugin</mainClass>
 	</properties>
 
 	<!-- Organization -->
@@ -34,7 +34,7 @@
 
 	<!-- Source code access -->
 	<scm>
-		<developerConnection>scm:git:git@github.com:AlmuraDev/Sprout.git</developerConnection>
+		<developerConnection>scm:git:git@github.com:AlmuraDev/RecipeManager.git</developerConnection>
 		<connection>scm:git:git://github.com/AlmuraDev/RecipeManager.git</connection>
 		<url>https://github.com/AlmuraDev/RecipeManager</url>
 	</scm>
@@ -60,30 +60,6 @@
 			<artifactId>spoutplugin</artifactId>
 			<version>${spoutVersion}</version>
 			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>uk.com.robust-it</groupId>
-			<artifactId>cloning</artifactId>
-			<version>1.9.0</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>trove</groupId>
-			<artifactId>trove</artifactId>
-			<version>1.1-beta-5</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.alta189</groupId>
-			<artifactId>simplesave</artifactId>
-			<version>1.2.0-SNAPSHOT</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<version>1.3.168</version>
-			<scope>compile</scope>
 		</dependency>
 	</dependencies>
 
