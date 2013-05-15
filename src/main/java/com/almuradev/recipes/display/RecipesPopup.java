@@ -84,11 +84,13 @@ public class RecipesPopup extends GenericPopup {
 		listWidget.shiftXPos(-195).shiftYPos(-60);
 
 		craftTexture = new GenericTexture();
+		craftTexture.setUrl("");
 		craftTexture.setAnchor(WidgetAnchor.CENTER_CENTER);
 		craftTexture.setHeight(110).setWidth(190);
 		craftTexture.shiftXPos(5).shiftYPos(-100);
 
 		resultTexture = new GenericTexture();
+		resultTexture.setUrl("");
 		resultTexture.setAnchor(WidgetAnchor.CENTER_CENTER);
 		resultTexture.setHeight(100).setWidth(100);
 		resultTexture.shiftXPos(50).shiftYPos(20);
@@ -97,7 +99,6 @@ public class RecipesPopup extends GenericPopup {
 		close.setAnchor(WidgetAnchor.CENTER_CENTER);
 		close.setHeight(20).setWidth(50);
 		close.shiftXPos(145).shiftYPos(95);
-
 
 		attachWidgets(plugin, border, label, label1, listWidget, comboBox, craftTexture, resultTexture, close);
 		player.getMainScreen().attachPopupScreen(this);
@@ -128,6 +129,9 @@ public class RecipesPopup extends GenericPopup {
 			return;
 		}
 		listWidget.clear();
+		if (text == null || text.isEmpty()) {
+			return;
+		}
 		final List<RecipeInfo> infos = plugin.getBackend().get(text);
 		if (infos == null) {
 			return;
