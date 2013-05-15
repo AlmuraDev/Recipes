@@ -146,6 +146,7 @@ public class RecipesPopup extends GenericPopup {
 			if (info != null) {
 				craftTexture.setUrl(new File(plugin.getDataFolder().getPath() + File.separator + "images", info.getInputImageLocation()).getPath());
 				resultTexture.setUrl(new File(plugin.getDataFolder().getPath() + File.separator + "images", info.getOutputImageLocation()).getPath());
+				listWidget.setSelection(0);
 			}
 		}
 	}
