@@ -17,6 +17,9 @@ permissions:
     recipes.admin:
         description:
         default: op
+    recipes.use:
+        description:
+        default: true
     recipes.view:
         description:
         default: op

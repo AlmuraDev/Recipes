@@ -33,6 +33,7 @@ import com.almuradev.recipes.info.RecipeInfo;
 
 import org.getspout.spoutapi.gui.GenericLabel;
 import org.getspout.spoutapi.gui.GenericPopup;
+import org.getspout.spoutapi.gui.GenericTextField;
 import org.getspout.spoutapi.gui.GenericTexture;
 import org.getspout.spoutapi.gui.ListWidget;
 import org.getspout.spoutapi.gui.ListWidgetItem;
@@ -44,6 +45,8 @@ public class RecipesPopup extends GenericPopup {
 	private RecipesPlugin plugin;
 	private SpoutPlayer player;
 	private ListWidget listWidget;
+	private GenericLabel descriptionLabel, selectLabel;
+	private GenericTextField ingredientsText;
 	//private GenericButton selectButton; TODO
 	private MyComboBox comboBox;
 	private GenericTexture craftTexture, resultTexture;
@@ -65,14 +68,20 @@ public class RecipesPopup extends GenericPopup {
 		label.setScale(1.5F);
 		label.shiftXPos((GenericLabel.getStringWidth(label.getText(), label.getScale()) / 2) * -1).shiftYPos(-113);
 
-		GenericLabel label1 = new GenericLabel();
-		label1.setText("Text here.");
-		label1.setAnchor(WidgetAnchor.CENTER_CENTER);
-		label1.shiftXPos(-195).shiftYPos(100);
-		label1.setScale(1.0F).setWidth(-1).setHeight(-1);
+		descriptionLabel = new GenericLabel();
+		descriptionLabel.setText("");
+		descriptionLabel.setAnchor(WidgetAnchor.CENTER_CENTER);
+		descriptionLabel.shiftXPos(-195).shiftYPos(95);
+		descriptionLabel.setScale(1.0F).setWidth(-1).setHeight(-1);
+		
+		selectLabel = new GenericLabel();
+		selectLabel.setText("<< Select a Category.");
+		selectLabel.setAnchor(WidgetAnchor.CENTER_CENTER);
+		selectLabel.shiftXPos(-25).shiftYPos(-85);
+		selectLabel.setScale(1.0F).setWidth(-1).setHeight(-1);
 
 		comboBox = new MyComboBox(this);
-		comboBox.setText("Recipes Categories");
+		comboBox.setText("Category");
 		comboBox.setAnchor(WidgetAnchor.CENTER_CENTER);
 		comboBox.shiftXPos(-195).shiftYPos(-90);
 		comboBox.setHeight(20).setWidth(150);
@@ -86,21 +95,23 @@ public class RecipesPopup extends GenericPopup {
 		craftTexture = new GenericTexture();
 		craftTexture.setUrl("");
 		craftTexture.setAnchor(WidgetAnchor.CENTER_CENTER);
-		craftTexture.setHeight(110).setWidth(190);
-		craftTexture.shiftXPos(5).shiftYPos(-100);
+		craftTexture.setHeight(85).setWidth(190);
+		craftTexture.shiftXPos(-15).shiftYPos(-90);
 
-		resultTexture = new GenericTexture();
-		resultTexture.setUrl("");
-		resultTexture.setAnchor(WidgetAnchor.CENTER_CENTER);
-		resultTexture.setHeight(100).setWidth(100);
-		resultTexture.shiftXPos(50).shiftYPos(20);
+		ingredientsText = new GenericTextField();
+		ingredientsText.setAnchor(WidgetAnchor.CENTER_CENTER);
+		ingredientsText.setHeight(80).setWidth(190);
+		ingredientsText.shiftXPos(-15).shiftYPos(5);
+		ingredientsText.setMaximumCharacters(200);
+		ingredientsText.setMaximumLines(4);
+		ingredientsText.setVisible(false);
 
 		CloseButton close = new CloseButton(plugin);
 		close.setAnchor(WidgetAnchor.CENTER_CENTER);
 		close.setHeight(20).setWidth(50);
-		close.shiftXPos(145).shiftYPos(95);
+		close.shiftXPos(145).shiftYPos(90);
 
-		attachWidgets(plugin, border, label, label1, listWidget, comboBox, craftTexture, resultTexture, close);
+		attachWidgets(plugin, border, label, descriptionLabel, ingredientsText, listWidget, comboBox, craftTexture, selectLabel, close);
 		player.getMainScreen().attachPopupScreen(this);
 		populateComboBox();
 	}
@@ -116,10 +127,14 @@ public class RecipesPopup extends GenericPopup {
 		final RecipeInfo info = plugin.getBackend().get(selectedTypeName, selectedRecipeName);
 		if (info == null) {
 			craftTexture.setUrl("");
-			resultTexture.setUrl("");
+			ingredientsText.setText("");
+			descriptionLabel.setText("");
 		} else {
 			craftTexture.setUrl(new File(plugin.getDataFolder().getPath() + File.separator + "images", info.getInputImageLocation()).getPath());
-			resultTexture.setUrl(new File(plugin.getDataFolder().getPath() + File.separator + "images", info.getOutputImageLocation()).getPath());
+			ingredientsText.setText(info.getIngredients());			
+			descriptionLabel.setText(info.getDescription());
+			selectLabel.setVisible(false);
+			ingredientsText.setVisible(true);
 		}
 	}
 
@@ -145,10 +160,13 @@ public class RecipesPopup extends GenericPopup {
 			final RecipeInfo info = plugin.getBackend().get(selectedTypeName, selectedRecipeName);
 			if (info != null) {
 				craftTexture.setUrl(new File(plugin.getDataFolder().getPath() + File.separator + "images", info.getInputImageLocation()).getPath());
-				resultTexture.setUrl(new File(plugin.getDataFolder().getPath() + File.separator + "images", info.getOutputImageLocation()).getPath());
+				ingredientsText.setText(info.getIngredients());				
+				descriptionLabel.setText(info.getDescription());
 				listWidget.setSelection(0);
+				selectLabel.setVisible(false);
+				ingredientsText.setVisible(true);
 			}
-		}
+		} 
 	}
 
 	private void populateComboBox() {

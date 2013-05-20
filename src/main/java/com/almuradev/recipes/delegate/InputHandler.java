@@ -36,7 +36,7 @@ public class InputHandler implements BindingExecutionDelegate {
 	}
 
 	public void keyPressed(KeyBindingEvent keyBindingEvent) {
-		//Only toggle state when not on the gamescreen
+		//Only toggle state when not on the gamescreen		
 		if (!keyBindingEvent.getScreenType().equals(ScreenType.GAME_SCREEN)) {
 			return;
 		}

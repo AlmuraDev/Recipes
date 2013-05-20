@@ -59,7 +59,7 @@ public class Loader {
 
 	public void load() {
 		try {
-			Files.walkFileTree(dir.toPath(), new FileLoadingVisitor(plugin));
+			Files.walkFileTree(dir.toPath(), new FileLoadingVisitor(plugin));			
 		} catch (IOException ignore) {
 			plugin.getLogger().severe("Encountered a major issue while attempting to find " + dir.toPath() + ". Disabling...");
 			plugin.getServer().getPluginManager().disablePlugin(plugin);
@@ -87,12 +87,12 @@ class FileLoadingVisitor extends SimpleFileVisitor<Path> {
 			return FileVisitResult.TERMINATE;
 		}
 		plugin.getBackend().put(path.getFileName().toString().split(".yml")[0], toInject);
-		return FileVisitResult.TERMINATE;
+		return FileVisitResult.CONTINUE;
 	}
 
 	private List<RecipeInfo> createDescriptors(File file) {
 		final List<RecipeInfo> infos = new LinkedList<>();
-		final YamlConfiguration reader = YamlConfiguration.loadConfiguration(file);
+		final YamlConfiguration reader = YamlConfiguration.loadConfiguration(file);		
 		final Iterator<String> iterator = reader.getKeys(false).iterator();
 
 		while (iterator.hasNext()) {
@@ -100,7 +100,9 @@ class FileLoadingVisitor extends SimpleFileVisitor<Path> {
 			final ConfigurationSection identifierSection = reader.getConfigurationSection(identifier);
 			final String recipeImageLocation = identifierSection.getString("recipe", "");
 			final String resultImageLocation = identifierSection.getString("result", "");
-			infos.add(new RecipeInfo(identifier, recipeImageLocation, resultImageLocation));
+			final String description = identifierSection.getString("description", "");
+			final String ingredients = identifierSection.getString("ingredients", "");
+			infos.add(new RecipeInfo(identifier, recipeImageLocation, resultImageLocation, description, ingredients));
 		}
 
 		return infos;

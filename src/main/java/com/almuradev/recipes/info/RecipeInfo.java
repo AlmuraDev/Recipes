@@ -23,11 +23,15 @@ public final class RecipeInfo {
 	private final String identifer;
 	private final String inputImageLocation;
 	private final String outputImageLocation;
+	private final String description;
+	private final String ingredients;	
 
-	public RecipeInfo(String identifer, String inputImageLocation, String outputImageLocation) {
+	public RecipeInfo(String identifer, String inputImageLocation, String outputImageLocation, String description, String ingredients) {
 		this.identifer = identifer;
 		this.inputImageLocation = inputImageLocation;
 		this.outputImageLocation = outputImageLocation;
+		this.description = description;
+		this.ingredients = ingredients;
 	}
 
 	public String getIdentifer() {
@@ -40,5 +44,13 @@ public final class RecipeInfo {
 
 	public String getOutputImageLocation() {
 		return outputImageLocation;
+	}
+	
+	public String getDescription() {
+		return description;
+	}
+	
+	public String getIngredients() {
+		return ingredients;
 	}
 }

@@ -57,11 +57,15 @@ public class RecipesPlugin extends JavaPlugin {
 		config.options().copyDefaults(true);
 		saveConfig();
 		//Setup bindings
+		
+		/*
 		try {
 			SpoutManager.getKeyBindingManager().registerBinding("Recipes", Keyboard.valueOf(getConfig().getString("Hot_Key", "KEY_U")), "Opens Recipes Browser", new InputHandler(this), this);
 		} catch (Exception ex) {
 			SpoutManager.getKeyBindingManager().registerBinding("Recipes", Keyboard.KEY_U, "Opens Recipes Browser", new InputHandler(this), this);
 		}
+		*/
+		
 		//Precache files
 		for (Map.Entry<String, List<RecipeInfo>> entry : REGISTRY.getAll().entrySet()) {
 			for (RecipeInfo info : entry.getValue()) {
