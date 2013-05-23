@@ -29,7 +29,9 @@ import com.almuradev.recipes.RecipesPlugin;
 import com.almuradev.recipes.display.widgets.CloseButton;
 import com.almuradev.recipes.display.widgets.MyComboBox;
 import com.almuradev.recipes.display.widgets.MyListWidget;
+import com.almuradev.recipes.display.widgets.RefreshButton;
 import com.almuradev.recipes.info.RecipeInfo;
+import com.almuradev.recipes.io.Loader;
 
 import org.getspout.spoutapi.gui.GenericLabel;
 import org.getspout.spoutapi.gui.GenericPopup;
@@ -43,7 +45,7 @@ import org.getspout.spoutapi.player.SpoutPlayer;
 
 public class RecipesPopup extends GenericPopup {
 	private RecipesPlugin plugin;
-	private SpoutPlayer player;
+	private SpoutPlayer player;	
 	private ListWidget listWidget;
 	private GenericLabel descriptionLabel, selectLabel;
 	private GenericTextField ingredientsText;
@@ -106,12 +108,18 @@ public class RecipesPopup extends GenericPopup {
 		ingredientsText.setMaximumLines(4);
 		ingredientsText.setVisible(false);
 
+		RefreshButton refresh = new RefreshButton(plugin, this);
+		refresh.setAnchor(WidgetAnchor.CENTER_CENTER);
+		refresh.setTooltip("Once plugin refreshes this list it will close the browser window.");
+		refresh.setHeight(20).setWidth(50);
+		refresh.shiftXPos(60).shiftYPos(90);
+		
 		CloseButton close = new CloseButton(plugin);
 		close.setAnchor(WidgetAnchor.CENTER_CENTER);
 		close.setHeight(20).setWidth(50);
 		close.shiftXPos(145).shiftYPos(90);
 
-		attachWidgets(plugin, border, label, descriptionLabel, ingredientsText, listWidget, comboBox, craftTexture, selectLabel, close);
+		attachWidgets(plugin, border, label, descriptionLabel, ingredientsText, listWidget, comboBox, craftTexture, selectLabel, refresh, close);
 		player.getMainScreen().attachPopupScreen(this);
 		populateComboBox();
 	}
@@ -136,6 +144,12 @@ public class RecipesPopup extends GenericPopup {
 			selectLabel.setVisible(false);
 			ingredientsText.setVisible(true);
 		}
+	}
+	
+	// Refresh List and rebuild combo boxes
+	public void refreshAll() {
+		Loader.load();		
+		player.getMainScreen().closePopup();
 	}
 
 	//ComboBox

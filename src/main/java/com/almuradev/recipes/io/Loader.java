@@ -38,9 +38,10 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 public class Loader {
-	private final RecipesPlugin plugin;
-	private final File dir;
+	private static RecipesPlugin plugin;
+	private static File dir;
 
+	@SuppressWarnings("static-access")
 	public Loader(RecipesPlugin plugin) {
 		this.plugin = plugin;
 		dir = new File(plugin.getDataFolder(), "recipes");
@@ -57,7 +58,7 @@ public class Loader {
 		}
 	}
 
-	public void load() {
+	public static void load() {
 		try {
 			Files.walkFileTree(dir.toPath(), new FileLoadingVisitor(plugin));			
 		} catch (IOException ignore) {
